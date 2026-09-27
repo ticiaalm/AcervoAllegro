@@ -2,6 +2,10 @@ import { Routes } from '@angular/router';
 import { Login } from './login/login'
 import { Cadastro } from './cadastro/cadastro';
 import { EsqueciSenha } from './esqueci-senha/esqueci-senha';
+import { Vitrine } from './vitrine/vitrine';
+import { Cesta } from './cesta/cesta';
+import { Busca } from './busca/busca';
+import { Detalhe } from './detalhe/detalhe';
 
 export const routes: Routes = [
     {
@@ -15,5 +19,25 @@ export const routes: Routes = [
     {
         path: 'esqueci-senha',
         component: EsqueciSenha
+    },
+    {
+        path: 'vitrine',
+        component: Vitrine
+    },
+    {
+        path: '',
+        component: Vitrine
+    },
+    {
+        path:'cesta',
+        component: Cesta
+    },
+    {
+        path: 'busca',
+        component: Busca
+    },
+    {
+        path: 'detalhe',
+        component: Detalhe
     }
 ];
