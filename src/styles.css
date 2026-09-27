@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+#logotipo {
+    width: 200px;
+}
+
+header {
+    background-color: #bb9457;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #bb9457;
+    color: #432818;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.button, .btn {
+    background-color: #faedcd;
+    border: none;
+    color: #432818;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 9px;
+}
