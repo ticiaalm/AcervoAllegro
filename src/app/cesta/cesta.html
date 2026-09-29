@@ -1,1 +1,34 @@
-<p>cesta works!</p>
+<h3>Cesta de compras</h3>
+<div *ngIf="lista.length == 0" class="alert alert-info">
+    A cesta está vazia.
+</div>
+<div *ngIf="lista.length > 0">
+    <div class="row g-3">
+        <div class="col-12" *ngFor="let item of lista">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{item.produto.nome}}</h4>
+                    <p class="card-text">{{item.produto.descritivo}}</p>
+                    <p class="card-text">
+                        Código: {{item.produto.codigo}}<br>
+                        Quantidade: {{item.quantidade}}<br>
+
+                        Valor unitário:
+                        R$
+                        {{(item.produto.valorPromo > 0
+                        ? item.produto.valorPromo
+                        : item.produto.valor)
+                        | number:'1.2-2'}}<br>
+
+                        Valor total: R$ {{item.valorTotal | number:'1.2-2'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body text-end">
+            <h4>Total da cesta: R$ {{total | number:'1.2-2'}}</h4>
+        </div>
+    </div>
+</div>

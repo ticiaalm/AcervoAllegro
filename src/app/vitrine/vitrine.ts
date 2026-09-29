@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Produto } from '../model/produto';
+import { CommonModule } from '@angular/common';
+import { ItemCesta } from '../model/item-cesta';
 
 @Component({
-  imports: [],
+  imports: [CommonModule],
   selector: 'app-vitrine',
   styleUrl: './vitrine.css',
   templateUrl: './vitrine.html',
@@ -118,4 +120,34 @@ export class Vitrine {
       destaque: 0
     }
   ];
+  mostrarDetalhe(obj: Produto) {
+    localStorage.setItem("produto", JSON.stringify(obj));
+    location.href = "./detalhe";
+  }
+
+  adicionarCesta(obj: Produto) {
+    let json = localStorage.getItem("cesta");
+    let cesta: ItemCesta[] = [];
+    // Se a cesta já existir, carrega os itens atuais
+    if (json != null && json != undefined) {
+      cesta = JSON.parse(json);
+    }
+    // Verifica se o produto já está na cesta
+    let item = cesta.find(i => i.produto.codigo === obj.codigo);
+    if (item != undefined) {
+      // Produto já existe: aumenta a quantidade
+      item.quantidade++;
+      // Recalcula o valor total desse produto
+      let valorUnitario = obj.valorPromo > 0
+        ? obj.valorPromo
+        : obj.valor;
+      item.valorTotal = item.quantidade * valorUnitario;
+    } else {
+      // Produto novo: adiciona com quantidade 1
+      item = new ItemCesta(obj);
+      cesta.push(item);
+    }
+    localStorage.setItem("cesta", JSON.stringify(cesta));
+    location.href = "./cesta";
+  }
 }

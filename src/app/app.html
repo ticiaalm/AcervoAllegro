@@ -1,21 +1,20 @@
 <header class="d-flex align-items-center gap-3 p-3">
 
     <img src="logotipo.jpg" id="logotipo">
-
     <div class="input-group flex-grow-1">
         <input type="text" class="form-control" placeholder="Pesquisar...">
         <button class="btn btn-outline-secondary" type="button">
             Buscar
         </button>
     </div>
+
     <nav class="btn">
         <a routerLink="/cadastro" class="btn btn-outline-light">
-        Cadastro
-    </a>
+            Cadastro
+        </a>
     </nav>
 
 </header>
-
 <nav class="btn-group w-75">
     <a routerLink="/cesta" class="btn btn-outline-light">
         Cesta
@@ -31,6 +30,7 @@
 <div>
     <router-outlet></router-outlet>
 </div>
+
 <footer class="text-end">
     Rodapé
 </footer>

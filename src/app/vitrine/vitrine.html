@@ -1,1 +1,18 @@
-<p>vitrine works!</p>
+<div class="row g-3">
+    <div class="col-4 card" *ngFor="let obj of lista">
+        <img src="{{obj.codigo}}.jpg" class="card-img-top" width="200px"><br>
+        <div class="card-body">
+            <h4 class="card-title">{{obj.nome}}</h4>
+            <div class="card-text" *ngIf="obj.valorPromo > 0">
+                de: R$ {{obj.valor}}<br>
+                por: R$ {{obj.valorPromo}}<br>
+            </div>
+            <div class="card-text" *ngIf="obj.valorPromo==0">
+                por: R$ {{obj.valor}}<br>
+            </div>
+
+            <button class="btn btn-info w-50" (click)="mostrarDetalhe(obj);">Detalhe</button>
+            <button class="btn btn-success w-50" *ngIf="obj.estoque>0" (click)="adicionarCesta(obj)">Comprar</button>
+        </div>
+    </div>
+</div>
