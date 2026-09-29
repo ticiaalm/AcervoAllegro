@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,5 +9,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.css'
 })
 export class App {
-  
+
+  termoBusca: string = "";
+
+  constructor(private router: Router) {}
+
+  buscarProduto() {
+    this.router.navigate(['/vitrine'], {
+      queryParams: {
+        busca: this.termoBusca
+      }
+    });
+  }
 }

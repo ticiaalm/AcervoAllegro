@@ -1,9 +1,9 @@
 <header class="d-flex align-items-center gap-3 p-3">
 
-    <img src="logotipo.jpg" id="logotipo">
+    <img src="logotipo.png" id="logotipo">
     <div class="input-group flex-grow-1">
-        <input type="text" class="form-control" placeholder="Pesquisar...">
-        <button class="btn btn-outline-secondary" type="button">
+        <input type="text" class="form-control" placeholder="Pesquisar..." [(ngModel)]="termoBusca">
+        <button class="btn btn-outline-secondary" type="button" (click)="buscarProduto()">
             Buscar
         </button>
     </div>

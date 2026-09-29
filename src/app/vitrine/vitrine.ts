@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Produto } from '../model/produto';
 import { CommonModule } from '@angular/common';
 import { ItemCesta } from '../model/item-cesta';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   imports: [CommonModule],
@@ -120,11 +121,30 @@ export class Vitrine {
       destaque: 0
     }
   ];
+  
+  listaExibida: Produto[] = [];
+  constructor(private route: ActivatedRoute) {}
+  ngOnInit() {
+    this.listaExibida = this.lista;
+    this.route.queryParams.subscribe(params => {
+      const busca = params['busca'];
+      if (busca) {
+        this.buscar(busca);
+      } else {
+        this.listaExibida = this.lista;
+      }
+    });
+  }
+  buscar(termo: string) {
+    termo = termo.toLowerCase().trim();
+    this.listaExibida = this.lista.filter(obj =>
+      obj.nome.toLowerCase().includes(termo)
+    );
+  }
   mostrarDetalhe(obj: Produto) {
     localStorage.setItem("produto", JSON.stringify(obj));
     location.href = "./detalhe";
   }
-
   adicionarCesta(obj: Produto) {
     let json = localStorage.getItem("cesta");
     let cesta: ItemCesta[] = [];
@@ -150,4 +170,5 @@ export class Vitrine {
     localStorage.setItem("cesta", JSON.stringify(cesta));
     location.href = "./cesta";
   }
+
 }
