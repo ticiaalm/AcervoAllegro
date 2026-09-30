@@ -33,3 +33,7 @@ body {
     cursor: pointer;
     border-radius: 9px;
 }
+
+html * {
+  font-family: "Georgia", "Courier New", monospace;
+}
