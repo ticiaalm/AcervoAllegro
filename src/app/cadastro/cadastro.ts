@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Cliente } from '../model/cliente';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   selector: 'app-cadastro',
   styleUrl: './cadastro.css',
   templateUrl: './cadastro.html',

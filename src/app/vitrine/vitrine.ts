@@ -125,20 +125,23 @@ export class Vitrine {
   listaExibida: Produto[] = [];
 
   buscaRealizada: boolean = false;
+  termoBusca: string = '';
 
   constructor(private route: ActivatedRoute) { }
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const busca = params['busca'];
-      if (busca && busca.trim() !== '') {
-        this.buscaRealizada = true;
-        this.buscar(busca);
-      } else {
-        this.buscaRealizada = false;
-        this.listaExibida = this.lista;
-      }
+        const busca = params['busca'];
+        if (busca && busca.trim() !== '') {
+            this.buscaRealizada = true;
+            this.termoBusca = busca;
+            this.buscar(busca);
+        } else {
+            this.buscaRealizada = false;
+            this.termoBusca = '';
+            this.listaExibida = this.lista;
+        }
     });
-  }
+}
 
   buscar(termo: string): void {
     const busca = termo

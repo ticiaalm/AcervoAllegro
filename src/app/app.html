@@ -1,6 +1,6 @@
-<header class="d-flex align-items-center gap-3 p-3">
+<header class="d-flex align-items-center gap-5 p-3">
     <img src="logotipo.png" id="logotipo">
-    <div class="input-group flex-grow-1">
+    <div class="input-group flex-grow-1" id="menu">
         <input type="text" class="form-control" placeholder="Pesquisar..." [(ngModel)]="termoBusca">
         <button class="btn btn-outline-secondary" type="button" (click)="buscarProduto()">
             Buscar
@@ -8,13 +8,13 @@
     </div>
 
     <nav class="btn">
-        <a routerLink="/cadastro" class="btn btn-outline-light">
-            Cadastro
+        <a routerLink="/cadastro">
+            <img src="/usuario.png" id="usuario" alt="cadastro">
         </a>
     </nav>
 </header>
 
-<nav class="btn-group w-75 mx-auto d-flex justify-content-center mb-4">
+    <nav class="btn-group w-75 mx-auto d-flex justify-content-center mb-4">
     <a routerLink="/cesta" class="btn btn-outline-light">
         Cesta
     </a>

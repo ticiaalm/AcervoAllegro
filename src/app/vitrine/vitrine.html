@@ -1,6 +1,11 @@
+<div *ngIf="buscaRealizada" class="mt-3 mb-3">
+    <h3>Pesquisa por: {{ termoBusca }}</h3>
+</div>
+
 <div *ngIf="buscaRealizada && listaExibida.length === 0" class="alert alert-warning mt-3">
     Produto não encontrado no catálogo.
 </div>
+
 
 <div class="row g-3">
     <div class="col-4 card" *ngFor="let obj of listaExibida">
@@ -19,7 +24,7 @@
             </div>
             <div class="card-text" *ngIf="obj.valorPromo == 0">
                 por: R$ {{obj.valor}}<br>
-            </div>
+            </div><br>
             <button class="btn btn-success w-50" *ngIf="obj.estoque > 0" (click)="adicionarCesta(obj)">
                 Comprar
             </button>
