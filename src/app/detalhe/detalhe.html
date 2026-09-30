@@ -16,7 +16,7 @@
             <div class="card-text" *ngIf="obj.valorPromo==0">
                 por: R$ {{obj.valor}}<br>
             </div>
-            <button class="btn btn-success w-50" *ngIf="obj.estoque>0">Comprar</button>
+            <button class="btn btn-success w-50" *ngIf="obj.estoque>0" (click)="adicionarCesta(obj)">Comprar</button>
         </div>
     </div>
 </div>
