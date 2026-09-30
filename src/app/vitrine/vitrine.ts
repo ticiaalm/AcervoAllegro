@@ -121,54 +121,63 @@ export class Vitrine {
       destaque: 0
     }
   ];
-  
+
   listaExibida: Produto[] = [];
-  constructor(private route: ActivatedRoute) {}
-  ngOnInit() {
-    this.listaExibida = this.lista;
+
+  buscaRealizada: boolean = false;
+
+  constructor(private route: ActivatedRoute) { }
+  ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const busca = params['busca'];
-      if (busca) {
+      if (busca && busca.trim() !== '') {
+        this.buscaRealizada = true;
         this.buscar(busca);
       } else {
+        this.buscaRealizada = false;
         this.listaExibida = this.lista;
       }
     });
   }
-  buscar(termo: string) {
-    termo = termo.toLowerCase().trim();
-    this.listaExibida = this.lista.filter(obj =>
-      obj.nome.toLowerCase().includes(termo)
-    );
+
+  buscar(termo: string): void {
+    const busca = termo
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+    this.listaExibida = this.lista.filter(obj => {
+      const nome = obj.nome
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+      return nome.includes(busca);
+    });
   }
-  mostrarDetalhe(obj: Produto) {
+
+  mostrarDetalhe(obj: Produto): void {
     localStorage.setItem("produto", JSON.stringify(obj));
     location.href = "./detalhe";
   }
-  adicionarCesta(obj: Produto) {
+
+  adicionarCesta(obj: Produto): void {
     let json = localStorage.getItem("cesta");
     let cesta: ItemCesta[] = [];
-    // Se a cesta já existir, carrega os itens atuais
     if (json != null && json != undefined) {
       cesta = JSON.parse(json);
     }
-    // Verifica se o produto já está na cesta
     let item = cesta.find(i => i.produto.codigo === obj.codigo);
     if (item != undefined) {
-      // Produto já existe: aumenta a quantidade
       item.quantidade++;
-      // Recalcula o valor total desse produto
       let valorUnitario = obj.valorPromo > 0
         ? obj.valorPromo
         : obj.valor;
       item.valorTotal = item.quantidade * valorUnitario;
     } else {
-      // Produto novo: adiciona com quantidade 1
       item = new ItemCesta(obj);
       cesta.push(item);
     }
     localStorage.setItem("cesta", JSON.stringify(cesta));
     location.href = "./cesta";
   }
-
 }

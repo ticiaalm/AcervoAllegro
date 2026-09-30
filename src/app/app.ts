@@ -9,16 +9,17 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.css'
 })
 export class App {
-
   termoBusca: string = "";
-
   constructor(private router: Router) {}
-
+  
   buscarProduto() {
+    const termo = this.termoBusca.trim();
     this.router.navigate(['/vitrine'], {
       queryParams: {
-        busca: this.termoBusca
+        busca: termo
       }
+    }).then(() => {
+      window.location.reload();
     });
   }
 }

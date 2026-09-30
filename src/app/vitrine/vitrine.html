@@ -1,12 +1,14 @@
-<div class="alert alert-warning" *ngIf="listaExibida.length == 0">
-    Produto não encontrado.
+<div *ngIf="buscaRealizada && listaExibida.length === 0" class="alert alert-warning mt-3">
+    Produto não encontrado no catálogo.
 </div>
 
 <div class="row g-3">
     <div class="col-4 card" *ngFor="let obj of listaExibida">
         <button type="button" class="btn p-0 border-0" (click)="mostrarDetalhe(obj)">
             <img src="{{obj.codigo}}.jpg" class="card-img-top" width="200px" alt="{{obj.nome}}">
-        </button><br>
+        </button>
+        <br>
+
         <div class="card-body">
             <h4 class="card-title">
                 {{obj.nome}}
@@ -18,7 +20,9 @@
             <div class="card-text" *ngIf="obj.valorPromo == 0">
                 por: R$ {{obj.valor}}<br>
             </div>
-            <button class="btn btn-success w-50" *ngIf="obj.estoque > 0" (click)="adicionarCesta(obj)">Comprar</button>
+            <button class="btn btn-success w-50" *ngIf="obj.estoque > 0" (click)="adicionarCesta(obj)">
+                Comprar
+            </button>
         </div>
     </div>
 </div>

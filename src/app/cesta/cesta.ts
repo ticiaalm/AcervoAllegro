@@ -11,7 +11,7 @@ import { ItemCesta } from '../model/item-cesta';
 export class Cesta {
   lista: ItemCesta[] = [];
   total: number = 0;
-  
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -41,5 +41,22 @@ export class Cesta {
       (soma, item) => soma + item.valorTotal,
       0
     );
+  }
+
+  testeExcluir() {
+    localStorage.removeItem("cesta")
+    window.location.reload()
+  }
+
+  finalizarCompra() {
+    if (this.lista.length === 0) {
+      alert("A cesta está vazia!");
+      return;
+    }
+    alert("Compra finalizada com sucesso!");
+
+    localStorage.removeItem("cesta");
+
+    this.lista = [];
   }
 }
