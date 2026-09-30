@@ -4,14 +4,19 @@
         Informe seu e-mail para receber as instruções
         de recuperação da senha.
     </p>
-    <form>
+
+    <form (ngSubmit)="recuperarSenha()">
         <div class="mb-3">
             <label for="email" class="form-label">
                 E-mail
             </label>
-            <input type="email" id="email" class="form-control" placeholder="Digite seu e-mail">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Digite seu e-mail"
+                [(ngModel)]="email" required #emailInput="ngModel">
+            <div class="text-danger mt-1" *ngIf="emailInput.invalid && emailInput.touched">
+                Digite um e-mail válido.
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" [disabled]="emailInput.invalid">
             Enviar
         </button>
     </form>
