@@ -1,36 +1,63 @@
 <h3>Cesta de compras</h3>
+
 <div *ngIf="lista.length == 0" class="alert alert-info">
     A cesta está vazia.
 </div>
+
 <div *ngIf="lista.length > 0">
     <div class="row g-3">
         <div class="col-12" *ngFor="let item of lista">
             <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">{{item.produto.nome}}</h4>
-                    <p class="card-text">{{item.produto.descritivo}}</p>
-                    <p class="card-text">
-                        Código: {{item.produto.codigo}}<br>
-                        Quantidade: {{item.quantidade}}<br>
+                <div class="row g-0">
+                    
+                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                        <img src="{{item.produto.codigo}}.jpg" class="img-produto" alt="{{item.produto.nome}}">
+                    </div>
+                    
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                {{item.produto.nome}}
+                            </h4>
+                            <p class="card-text">
+                                {{item.produto.descritivo}}
+                            </p>
+                            <p class="card-text">
+                                Código: {{item.produto.codigo}}<br>
 
-                        Valor unitário:
-                        R$
-                        {{(item.produto.valorPromo > 0
-                        ? item.produto.valorPromo
-                        : item.produto.valor)
-                        | number:'1.2-2'}}<br>
+                                Quantidade: {{item.quantidade}}<br>
 
-                        Valor total: R$ {{item.valorTotal | number:'1.2-2'}}
-                    </p>
+                                Valor unitário:
+                                R$
+                                {{(item.produto.valorPromo > 0
+                                ? item.produto.valorPromo
+                                : item.produto.valor)
+                                | number:'1.2-2'}}<br>
+
+                                Valor total:
+                                R$ {{item.valorTotal | number:'1.2-2'}}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="card mt-3">
         <div class="card-body text-end">
-            <h4>Total da cesta: R$ {{total | number:'1.2-2'}}</h4>
+            <h4>
+                Total da cesta:
+                R$ {{total | number:'1.2-2'}}
+            </h4>
         </div>
     </div>
 </div>
-<button class="btn btn-info w-50" (click)="testeExcluir()">Limpar Cesta</button>
-<button class="btn btn-info w-50" (click)="finalizarCompra()">Finalizar compra</button>
+
+<button class="btn btn-info w-50" (click)="testeExcluir()">
+    Limpar Cesta
+</button>
+
+<button class="btn btn-info w-50" (click)="finalizarCompra()">
+    Finalizar compra
+</button>
